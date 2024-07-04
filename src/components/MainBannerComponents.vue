@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-F4EFE9 w-900 h-300 m-auto rounded-60 flex justify-between">
+  <div class="bg-F4EFE9 w-900 h-300 m-auto rounded-3xl flex justify-between">
     <div class="flex mr-8 ml-8 flex-col">
       <div class="mt-3">
         <img src="/image-7.png " alt="" />
