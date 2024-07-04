@@ -30,8 +30,12 @@
           ЦЕНА: <br />
           <span class="text-black font-bold">{{ props.price }}.тг</span>
         </p>
-        <div class="rounded-lg w-8 h-8 border flex justify-center items-center cursor-pointer">
-          <span class="text-center">+</span>
+        <div
+          class="rounded-lg w-8 h-8 border flex justify-center items-center cursor-pointer"
+          @click="togglePlus"
+          :class="{ clicked: isPlusClick }"
+        >
+          <img src="/plus.svg" alt="Plus Icon" />
         </div>
       </div>
     </div>
@@ -57,6 +61,9 @@
 }
 .bg-FEF0F0 {
   background-color: #fef0f0;
+}
+.clicked img {
+  content: url('/checked.svg');
 }
 </style>
 
@@ -87,4 +94,12 @@ const toggleHeart = () => {
 const heartIcon = computed(() => (isHeartClick.value ? '/heart-red.svg' : '/heart.svg'))
 
 console.log(heartIcon.value)
+
+const isPlusClick = ref(false)
+
+const togglePlus = () => {
+  isPlusClick.value = !isPlusClick.value
+}
+
+const plusIcon = computed(() => (isPlusClick.value ? '/checked.svg' : '/plus.svg'))
 </script>
