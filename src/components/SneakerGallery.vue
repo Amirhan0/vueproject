@@ -4,8 +4,21 @@
   >
     <div class="flex flex-col rounded-lg bg-white p-4 shadow-lg ml-6 mt-7" style="max-width: 200px">
       <div class="flex justify-center relative">
-        <img src="/heart.svg" alt="" class="absolute left-3 cursor-pointer opacity-20" />
-        <img :src="props.img" class="w-133 h-118" alt="Nike Blazer Mid Suede" />
+        <div
+          class="absolute left-3 border opacity-2 w-6 h-6 p-1 flex items-center"
+          style="border-radius: 6px"
+          :class="{ 'bg-FEF0F0': isHeartClick }"
+          @click="toggleHeart"
+        >
+          <img
+            :src="heartIcon"
+            alt=""
+            class="cursor-pointer heart-icon"
+            :class="{ clicked: isHeartClick }"
+          />
+        </div>
+
+        <img :src="props.img" class="w-133 h-118" alt="Snicker" />
       </div>
       <div class="mt-2">
         <p class="font-medium">
@@ -32,9 +45,24 @@
 .sneaker-gallery-container {
   gap: 1rem;
 }
+
+.heart-icon {
+  opacity: 0.2;
+  cursor: pointer;
+}
+
+.heart-icon.clicked {
+  opacity: 1;
+  filter: hue-rotate(0deg) saturate(10) brightness(1.5);
+}
+.bg-FEF0F0 {
+  background-color: #fef0f0;
+}
 </style>
 
 <script setup>
+import { ref, computed } from 'vue'
+
 const props = defineProps({
   title: {
     type: String,
@@ -49,4 +77,14 @@ const props = defineProps({
     required: true
   }
 })
+
+const isHeartClick = ref(false)
+
+const toggleHeart = () => {
+  isHeartClick.value = !isHeartClick.value
+}
+
+const heartIcon = computed(() => (isHeartClick.value ? '/heart-red.svg' : '/heart.svg'))
+
+console.log(heartIcon.value)
 </script>
