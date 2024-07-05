@@ -1,7 +1,8 @@
 <template>
   <div class="flex items-center gap-3 pb-5">
     <svg
-      class="rotate rotate-180 transition hover:rotate-0"
+    @click="$emit('close-drawer')"
+      class="rotate rotate-180 transition hover:rotate-0 cursor-pointer"
       width="13"
       height="13"
       viewBox="0 0 16 14"

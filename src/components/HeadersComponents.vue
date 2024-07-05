@@ -1,7 +1,7 @@
 <template>
   <header class="flex justify-between border-b border-slate-300 px-10 py-5">
     <div class="flex gap-4 items-center">
-      <img class="w-10" src="/logo.png" alt="Logo" />
+      <img class="w-10" src="/logo.png" alt="Логотип" />
       <div>
         <h2 class="text-xl font-bold uppercase">Vue Sneakers</h2>
         <p class="text-slate-400">Магазин лучших кроссовок</p>
@@ -23,3 +23,8 @@
     </ul>
   </header>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import DrawerComponent from './DrawerComponent.vue'
+</script>
