@@ -1,6 +1,6 @@
 <template>
   <div v-if="isVisible">
-    <div class="z-10 top-0 left-0 w-full h-full bg-black fixed opacity-70"></div>
+    <div class="z-10 top-0 left-0 w-full h-full bg-black fixed opacity-70" @click="toggleVisibility"></div>
     <div class="fixed justify-between top-0 right-0 bg-white z-20 h-full w-96 p-4">
       <div class="flex items-center gap-3 pb-5">
         <svg
