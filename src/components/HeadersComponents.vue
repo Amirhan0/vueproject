@@ -10,7 +10,7 @@
     <ul class="flex items-center gap-10">
       <li class="flex items-center gap-3 cursor-pointer text-gray-500 hover:text-black">
         <img src="/cart.svg" alt="" />
-        <b>1205 тенге.</b>
+        <b @click="toggleDrawer">1205 тенге.</b>
       </li>
       <li class="flex items-center gap-3 cursor-pointer text-gray-500 hover:text-black">
         <img src="/heart.svg" alt="" />
@@ -25,6 +25,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import DrawerComponent from './DrawerComponent.vue'
+import { toggleDrawerVisibility } from '../assets/basket'
+
+const toggleDrawer = toggleDrawerVisibility
 </script>
+
+<style scoped></style>
