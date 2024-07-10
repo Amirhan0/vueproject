@@ -32,7 +32,7 @@
       <CartBasket
         title="Мужские Кроссовки Nike Blazer Mid Suede"
         price="12.999"
-        img="/sneakers-2.jpg"
+        img="/sneakers/sneakers-2.jpg"
       />
 
       <div class="container absolute bottom-4">

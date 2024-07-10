@@ -2,26 +2,29 @@
   <div
     class="sneaker-gallery-container flex flex-wrap justify-center transition-transform duration-300 transform hover:scale-105 cursor-pointer"
   >
-    <div class="flex flex-col rounded-lg bg-white p-4 shadow-lg ml-6 mt-7" style="max-width: 270px">
+    <div class="flex flex-col rounded-lg bg-white p-4 shadow-lg mx-4 my-4" style="max-width: 250px">
       <div class="flex justify-center relative">
-        <div class="absolute left-3 p-1 flex items-center" style="border-radius: 6px">
-          <img :src="isFavourite ? '/like-2.svg' : '/like-1.svg'" alt="" />
+        <div class="absolute left-3 top-3 p-1 flex items-center rounded-full bg-white shadow-md">
+          <img :src="isFavourite ? '/like-2.svg' : '/like-1.svg'" alt="Favorite" />
         </div>
-
-        <img :src="props.img" class="w-133 h-118" alt="Snicker" />
+        <img :src="img" class="w-full h-auto object-cover rounded-lg" alt="Sneaker" />
       </div>
       <div class="mt-2">
-        <p class="font-medium">
-          {{ props.title }}
+        <p class="font-medium text-center">
+          {{ title }}
         </p>
       </div>
-      <div class="flex flex-row justify-between items-center mt-2">
+      <div class="flex justify-between items-center mt-2">
         <p class="text-gray-600 font-medium">
           ЦЕНА: <br />
-          <span class="text-black font-bold">{{ props.price }}.тг</span>
+          <span class="text-black font-bold">{{ price }} тг</span>
         </p>
-        <div class="rounded-lg w-8 h-8 border flex justify-center items-center cursor-pointer">
-          <img @click="onClickAdd" :src="isAdded ? '/checked.svg' : '/plus.svg'" alt="" />
+        <div class="rounded-lg w-8 h-8 flex justify-center items-center cursor-pointer">
+          <img
+            @click="onClickAdd"
+            :src="isAdded ? '/checked.svg' : '/plus.svg'"
+            alt="Add to cart"
+          />
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
 <template>
   <div class="border rounded-3xl relative flex p-5">
-    <img class="w-[80px] h-[70px]" :src="props.img" alt="" />
+    <img class="w-[80px] h-[70px]" :src="img" alt="" />
     <div class="ml-5">
-      <p>{{ props.title }}</p>
+      <p>{{ title }}</p>
       <div class="flex justify-between">
         <div class="flex flex-col">
-          <span class="font-bold">{{ props.price }}</span>
+          <span class="font-bold">{{ price }}</span>
         </div>
         <div>
           <img @click="onClickAdd" :src="isAdded ? '/checked.svg' : '/plus.svg'" alt="" />
