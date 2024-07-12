@@ -18,6 +18,54 @@ import SearchBarComponent from './components/SearchBarComponent.vue'
 import MainBanner from './components/MainBannerComponents.vue'
 import Headers from './components/HeadersComponents.vue'
 import DrawerComponent from './components/DrawerComponent.vue'
+
+import { ref, onMounted, reactive, watch, provide } from 'vue'
+import axios from 'axios'
+const sneakers = ref([])
+const filters = reactive({
+  sortBy: 'title',
+  searchBy: ''
+})
+
+const fetchItems = async () => {
+  try {
+    const params = {
+      sortBy: filters.sortBy
+    }
+    if (filters.searchBy) {
+      params.title = filters.searchBy
+    }
+    const { data } = await axios.get(`http://localhost:3000/api/items`, {
+      params
+    })
+    sneakers.value = data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const onChangeSelect = (event) => {
+  filters.sortBy = event.target.value
+  console.log(filters.sortBy)
+}
+
+const onChangeInput = (event) => {
+  filters.searchBy = `*${event.target.value}*`
+  console.log(filters.searchBy)
+}
+
+onMounted(fetchItems)
+watch(filters, fetchItems)
+
+const onClickAdd = (sneaker) => {
+  alert(`Добавлено в корзину`)
+}
+
+provide('onClickAdd', onClickAdd)
+provide('onChangeSelect', onChangeSelect)
+provide('onChangeInput', onChangeInput)
+provide('fetchItems', fetchItems)
+provide('sneakers', sneakers)
 </script>
 
 <style scoped></style>

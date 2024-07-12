@@ -15,27 +15,12 @@
 
 <script setup>
 import SneakerGallery from './SneakerGallery.vue'
-import { ref, onMounted } from 'vue'
+import SearchBarComponent from './SearchBarComponent.vue'
+import { inject } from 'vue'
 
-const sneakers = ref([])
-
-const loadSneakers = async () => {
-  try {
-    const response = await fetch('http://localhost:3000/api/items')
-    const data = await response.json()
-    sneakers.value = data
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-const onClickAdd = (sneaker) => {
-  alert(`Добавлено в корзину: ${sneaker.title}`)
-}
-
-onMounted(() => {
-  loadSneakers()
-})
+const sneakers = inject('sneakers')
+const fetchItems = inject('fetchItems')
+const onClickAdd = inject('onClickAdd')
 </script>
 
 <style scoped></style>
