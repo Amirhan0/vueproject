@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const { escapeRegExp } = require('lodash')
 const app = express()
 const PORT = 3000
 const Sneaker = require('./models/sneaker.cjs')
@@ -23,12 +24,32 @@ app.use(
 app.use(express.json())
 
 // GET
+// GET
 app.get('/api/items', async (req, res) => {
   try {
-    const items = await Sneaker.find()
+    const { sortBy, searchQuery } = req.query
+    console.log('sortBy:', sortBy)
+    console.log('searchQuery:', searchQuery)
+
+    let query = {}
+
+    if (searchQuery) {
+      const regexSearchQuery = new RegExp(searchQuery, 'i')
+      query = { title: { $regex: regexSearchQuery } }
+    }
+
+    let sortOptions = {}
+    if (sortBy) {
+      const sortOrder = sortBy.startsWith('-') ? -1 : 1
+      const fieldName = sortBy.replace(/^-/, '')
+
+      sortOptions[fieldName] = sortOrder
+    }
+
+    const items = await Sneaker.find(query).sort(sortOptions)
     res.json(items)
   } catch (error) {
-    console.error('Ошибка: ', error)
+    console.error('Ошибка при получении данных:', error)
     res.status(500).send('Server error')
   }
 })

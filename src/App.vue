@@ -23,8 +23,8 @@ import { ref, onMounted, reactive, watch, provide } from 'vue'
 import axios from 'axios'
 const sneakers = ref([])
 const filters = reactive({
-  sortBy: 'title',
-  searchBy: ''
+  sortBy: 'name',
+  searchQuery: ''
 })
 
 const fetchItems = async () => {
@@ -32,8 +32,8 @@ const fetchItems = async () => {
     const params = {
       sortBy: filters.sortBy
     }
-    if (filters.searchBy) {
-      params.title = filters.searchBy
+    if (filters.searchQuery) {
+      params.searchQuery = filters.searchQuery
     }
     const { data } = await axios.get(`http://localhost:3000/api/items`, {
       params
@@ -50,8 +50,8 @@ const onChangeSelect = (event) => {
 }
 
 const onChangeInput = (event) => {
-  filters.searchBy = `*${event.target.value}*`
-  console.log(filters.searchBy)
+  filters.searchQuery = event.target.value
+  console.log(filters.searchQuery)
 }
 
 onMounted(fetchItems)

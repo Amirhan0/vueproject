@@ -14,9 +14,7 @@
     </select>
     <div class="flex items-center gap-1 h-10 relative" style="width: 250px">
       <img src="/search.svg" alt="" class="w-4 h-5 absolute left-3 cursor-pointer" />
-      <form
-        action=""
->
+      <form action="">
         <input
           @input="onChangeInput"
           type="text"
